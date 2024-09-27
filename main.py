@@ -8,10 +8,11 @@ from pybricks.parameters import Port
 from pybricks.parameters import Color
 import brick1
 import brick2
+import threading
 
 driver = snippets.controller_driver.Driver(snippets.controller_driver.mapping)
 translator = snippets.translator.Translator(snippets.translator.mapping)
+driver_thread = threading.Thread(target=driver.do_stuff())
 
 
-while True:
-    
+
