@@ -6,12 +6,5 @@ from pybricks.ev3devices import TouchSensor
 from pybricks.ev3devices import UltrasonicSensor
 from pybricks.parameters import Port
 from pybricks.parameters import Color
-import brick1
-import brick2
 
-driver = snippets.controller_driver.Driver(snippets.controller_driver.mapping)
-translator = snippets.translator.Translator(snippets.translator.mapping)
-
-
-while True:
-    
+hub = EV3Brick()
