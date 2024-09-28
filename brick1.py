@@ -1,4 +1,3 @@
-import snippets
 from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import Motor
 from pybricks.ev3devices import ColorSensor
@@ -16,3 +15,7 @@ transmission = motor = Port.A
 
 hub = EV3Brick()
 accelerator = ColorSensor()
+clutch = TouchSensor()
+brake = ColorSensor()
+transmission = Motor()
+transmissionin = Motor()
