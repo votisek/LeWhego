@@ -8,14 +8,24 @@ from pybricks.parameters import Color
 
 """
 accelerator = color = Port.S1
-clutch = touch = Port.S2
 brake = color = Port.S3
-transmission = motor = Port.A 
 """
 
 hub = EV3Brick()
-accelerator = ColorSensor()
-clutch = TouchSensor()
-brake = ColorSensor()
-transmission = Motor()
-transmissionin = Motor()
+
+accelerator = TouchSensor()
+brake = TouchSensor()
+
+class Output:
+    def __init__(self):
+        pass
+    def accelerator(self):
+        if accelerator.pressed():
+            return 0x311
+        else:
+            return 0x310
+    def brake(self):
+        if brake.pressed():
+            return 0x321
+        else:
+            return 0x320

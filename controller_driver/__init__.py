@@ -1,6 +1,8 @@
 import mapping
-import pyautogui as pag
+import pyautogui
 import time
+import brick1
+import threading
 class Driver:
     def __init__(self, mapping, cycle):
         self.mapping = mapping
@@ -8,6 +10,6 @@ class Driver:
         self.runner = False
     def get_mapping(self, key):
         return self.mapping[key]
-    def do_stuff(self, brake, steer, transmission):
+    def do_stuff(self, brake, acceleration, steer, transmission):
         while self.runner: 
             pass
