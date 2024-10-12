@@ -4,9 +4,8 @@
     - done by adding 400 and joining 0x1 to the hex added angle
     > ### All values
     > ___
-    > ds
-    >
-    >
+    > Values are indexed from 0
+    > -90° = 0x100
+    > 0° = 0x5a
+    > 90° = 0xb4
 ___
-- # 0x00
-    - 

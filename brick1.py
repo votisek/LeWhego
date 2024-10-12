@@ -19,13 +19,14 @@ brake = TouchSensor()
 class Output:
     def __init__(self):
         pass
-    def accelerator(self):
+    def accelerator(self): # Hodnota: 0x3
         if accelerator.pressed():
             return 0x311
         else:
             return 0x310
-    def brake(self):
+    
+    def brake(self): # Hodnota: 0x4
         if brake.pressed():
-            return 0x321
+            return 0x421
         else:
-            return 0x320
+            return 0x420

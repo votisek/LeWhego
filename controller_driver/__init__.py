@@ -12,4 +12,4 @@ class Driver:
         return self.mapping[key]
     def do_stuff(self, brake, acceleration, steer, transmission):
         while self.runner: 
-            pass
+            
