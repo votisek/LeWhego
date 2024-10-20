@@ -15,9 +15,9 @@ flap2 = motor = Port.S3
 nitro = touch = Port.S4
 """
 wheel = GyroSensor(Port.S1)
-flap_plus = TouchSensor(Port.S2)
-flap_minus = TouchSensor(Port.S3)
-nitro = TouchSensor(Port.S4)
+flap_l = TouchSensor(Port.S2)
+flap_r = TouchSensor(Port.S3)
+tlacitko = TouchSensor(Port.S4)
 
 class Output:
     def __init__(self):
@@ -29,23 +29,21 @@ class Output:
         return hex(hex_value)
 
     def flaps(self): # Hodnota 0x2
-        if flap_minus.pressed() and flap_plus.pressed():
-            while flap_minus.pressed() and flap_plus.pressed():
-                pass
+        if flap_l.pressed() and flap_r.pressed():
             return 0x231
-        elif flap_minus.pressed():
-            while flap_minus.pressed():
+        elif flap_l.pressed():
+            while flap_l.pressed():
                 pass
             return 0x221
-        elif flap_plus.pressed():
-            while flap_plus.pressed():
+        elif flap_r.pressed():
+            while flap_r.pressed():
                 pass
             return 0x211
         else:
             return 0x200
 
-    def nitro(self): # Hodnota 0x3
-        if nitro.pressed():
+    def tlacitko(self): # Hodnota 0x5
+        if tlacitko.pressed():
             return 0x521
         else:
             return 0x520

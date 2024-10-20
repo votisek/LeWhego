@@ -13,10 +13,11 @@ import threading
 driver = controller_driver.Driver(controller_driver.mapping)
 driver_thread = threading.Thread(target=driver.do_stuff())
 driver_thread.daemon = True
-
-while True:
-    console = input()
-    driver.get_mapping(console)
+driver_thread.start()
+main = True
+while main:
+    console = input("LEWHEGO>> ")
+    
 
 
 
