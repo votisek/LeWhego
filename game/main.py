@@ -4,6 +4,16 @@ import vgamepad
 
 gamepad = vgamepad.VX360Gamepad()
 
+def handle_volant(data, minimal, maximal):
+    if data == 0:
+        gamepad.right_joystick_float(0, 0)
+    elif data > 0:
+        gamepad.right_joystick_float(data/maximal, 0)
+    elif data < 0:
+        gamepad.right_joystick_float(-1*(data/minimal), 0)
+    
+
+
 def handle_data(data, addr):
     if len(data) == 2: # Pedaly
         data_accelerator, data_brake = list(data)
@@ -15,8 +25,21 @@ def handle_data(data, addr):
             gamepad.left_trigger(255)
         elif data_brake is False:
             gamepad.left_trigger(0)
-    elif len(data) == 3: # Volant
-        pass
+    elif len(data) == 6: # Volant
+        data_right_transmission, data_left_transmission, data_nitro, data_volant, min_volant, max_volant = list(data)
+        if data_right_transmission is True:
+            gamepad.press_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+        elif data_right_transmission is False:
+            gamepad.release_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER)
+        if data_left_transmission is True:
+            gamepad.press_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER)
+        elif data_left_transmission is False:
+            gamepad.release_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER)
+        if data_nitro is True:
+            gamepad.press_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_START)
+        elif data_nitro is False:
+            gamepad.release_button(button=vgamepad.XUSB_BUTTON.XUSB_GAMEPAD_START)
+        handle_volant(data=data_volant, minimal=min_volant, maximal=max_volant)
     else:
         print(f"Unknown data just came from {addr}")
     gamepad.update()

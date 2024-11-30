@@ -1,18 +1,19 @@
 import socket
 import time
-from pybricks.hubs import EV3Brick
-from pybricks.nxtdevices import TouchSensor as NxtTouchSensor
-from pybricks.parameters import Port
 
-hub = EV3Brick()
-accelerator = NxtTouchSensor(Port.S1)
-brake = NxtTouchSensor(Port.S2)
+import ev3dev2
+import ev3dev2.sensor.lego as Sensor
+import ev3dev2.sensor as SensorPort
+
+accelerator = Sensor.TouchSensor(SensorPort.INPUT_1)
+brake = Sensor.TouchSensor(SensorPort.INPUT_2)
+
 
 device = "pedaly"
 
 def get_data():
-    data_accelerator = accelerator.pressed()
-    data_brake = accelerator.brake()
+    data_accelerator = accelerator.is_pressed
+    data_brake = accelerator.is_pressed
     return [data_accelerator, data_brake]
 
 def start_client():
